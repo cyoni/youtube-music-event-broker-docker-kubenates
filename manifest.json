@@ -27,7 +27,7 @@
   "commands": {
     "toggle-feature-foo": {
       "suggested_key": {
-        "default": "Ctrl+Shift+1"
+        "default": "Shift+Ctrl+8"
       },
       "description": "Download youtube video shortcut key",
       "global": true
