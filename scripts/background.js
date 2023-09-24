@@ -7,7 +7,6 @@ function sendNotification(title, message) {
   });
 }
 
-
 async function getYouTubeTab(queryOptions) {
   let [tab] = await chrome.tabs.query(queryOptions);
   return tab;
@@ -32,6 +31,7 @@ function getCleanTitle(title) {
     title = title
       .replace(/[\(\[].*?[\]\)]/g, "")
       .replace(/[\/.|":\]\[\(\)]/g, "")
+      .replace(/\s+/g, " ")
       .replace("- YouTube", "");
   }
   return title?.trim();
