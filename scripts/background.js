@@ -17,11 +17,11 @@ chrome.commands.onCommand.addListener(async (command) => {
 
   let queryOptions = { audible: true, url: "https://www.youtube.com/*" };
   let tab = await getYouTubeTab(queryOptions);
-  if (tab) downloadSong(tab.title, tab.url);
+  if (tab) downloadSong(tab.id, tab.title, tab.url);
   else {
     queryOptions.audible = null;
     tab = await getYouTubeTab(queryOptions);
-    if (tab) downloadSong(tab.title, tab.url);
+    if (tab) downloadSong(tab.id, tab.title, tab.url);
     else sendNotification("YouTube Downloader", "Couldn't find YouTube tab");
   }
 });
@@ -32,12 +32,15 @@ function getCleanTitle(title) {
       .replace(/[\(\[].*?[\]\)]/g, "")
       .replace(/[\/.|":\]\[\(\)]/g, "")
       .replace(/\s+/g, " ")
-      .replace("- YouTube", "");
+      .replace("- YouTube", "")
+      .trim();
   }
-  return title?.trim();
+  return title;
 }
 
-function downloadSong(title, url) {
+function downloadSong(id, title, url) {
+  handleLikeClick(id);
+
   title = getCleanTitle(title);
 
   chrome.notifications.create("", {
@@ -64,9 +67,14 @@ function downloadSong(title, url) {
       sendNotification(title, e.message);
     });
 }
+
+function handleLikeClick(tabId) {
+  chrome.tabs.sendMessage(tabId, { method: "HANDLE_LIKE_CLICK" });
+}
+
 chrome.action.onClicked.addListener(async (tab) => {
   if (tab.url.startsWith("https://www.youtube.com/watch")) {
-    downloadSong(tab.title, tab.url);
+    downloadSong(tab.id, tab.title, tab.url);
   }
 });
 
