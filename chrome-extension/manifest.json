@@ -6,7 +6,10 @@
   "host_permissions": ["http://localhost:4000/*"],
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/watch?*"],
+      "matches": [
+        "https://www.youtube.com/watch?*",
+        "https://www.youtube.com/results*"
+      ],
       "js": ["scripts/content.js"]
     }
   ],
@@ -33,7 +36,7 @@
   "commands": {
     "toggle-feature-foo": {
       "suggested_key": {
-        "default": "Shift+Ctrl+8"
+        "default": "Shift+Ctrl+0"
       },
       "description": "Download youtube video shortcut key",
       "global": true

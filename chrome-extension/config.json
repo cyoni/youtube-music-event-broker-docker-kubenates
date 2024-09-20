@@ -1,0 +1,4 @@
+{
+  "scripts": "server/index.js",
+  "targets": "win"
+}
