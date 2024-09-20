@@ -50,15 +50,15 @@ function downloadSong(id, title, url) {
     type: "basic",
   });
 
-  fetch(`http://localhost:4000/download?url=${url}&title=${title}`)
+  fetch(`http://localhost:4500/api/publish`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ url, title }),
+  })
     .then((res) => {
-      const response = res.json();
-      return response;
-    })
-    .then((res) => {
-      if (res.status == "success") {
-        sendNotification(title, "Download completed");
-      } else {
+      if (!res.ok) {
         sendNotification(title, "Failed to download");
       }
     })
