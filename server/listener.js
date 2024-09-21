@@ -1,11 +1,11 @@
 const nats = require("node-nats-streaming");
 const { randomBytes } = require("crypto");
-const TickerCreatedListener = require("./events/generator-listener");
+const GeneratorListener = require("./events/generator-listener");
 
 const clientId = randomBytes(4).toString("hex");
 
 const stan = nats.connect("youtube-music", clientId, {
-  url: `http://localhost:${process.env.NATS_PORT}`,
+  url: `http://yt-music-broker-srv:${process.env.NATS_PORT}`,
 });
 
 stan.on("connect", () => {
@@ -15,7 +15,7 @@ stan.on("connect", () => {
     console.log("nats connection has been closed");
     process.exit();
   });
-  new TickerCreatedListener(stan).listen();
+  new GeneratorListener(stan).listen();
 });
 
 process.on("SIGINT", () => stan.close());

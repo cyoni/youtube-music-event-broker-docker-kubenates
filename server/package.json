@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --env-file=../.env listener.js",
+    "start": "node listener.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

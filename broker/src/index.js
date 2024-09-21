@@ -1,6 +1,6 @@
 const express = require("express");
 const nats = require("node-nats-streaming");
-const TickerCreatedPublisher = require("./events/generator-publisher");
+const GeneratorPublisher = require("./events/generator-publisher");
 const { randomBytes } = require("crypto");
 const cors = require("cors");
 
@@ -15,7 +15,7 @@ const stan = nats.connect("youtube-music", "abc", {
   url: `http://localhost:${process.env.NATS_PORT}`,
 });
 
-const publisher = new TickerCreatedPublisher(stan);
+const publisher = new GeneratorPublisher(stan);
 
 app.get("/", (req, res) => {
   res.send("Keep Alive");

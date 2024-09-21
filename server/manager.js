@@ -4,31 +4,6 @@ const express = require("express");
 const app = express();
 const credentials = require("./credentials.json");
 
-// app.get("/download", async (req, res) => {
-//   try {
-//     const url = req.query.url;
-//     const title = req.query.title;
-//     if (!url) {
-//       res.status(400).json({
-//         error: "url is missing",
-//       });
-//       return;
-//     }
-
-//     await downloadSong(url, title);
-//     await uploadToCloud(title);
-
-//     res.status(400).json({ status: "success" });
-//   } catch (e) {
-//     return res.status(400).json({ status: "failed", error: e });
-//   }
-// });
-
-const port = 4000;
-// app.listen(port, () => {
-//   console.log(`Server is running at http://localhost:${port}`);
-// });
-
 function downloadSong(url, title) {
   return new Promise((resolve, reject) => {
     console.log("downloading", url);
