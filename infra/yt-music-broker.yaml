@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yt-music-broker-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yt-music-broker
+  template:
+    metadata:
+      labels:
+        app: yt-music-broker
+    spec:
+      containers:
+        - name: yt-music-broker
+          image: cyoni/yt-music-broker
+          env:
+            - name: NATS_PORT
+              value: "4222"
+            - name: SERVER_PORT
+              value: "4500"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yt-music-broker-srv
+spec:
+  selector:
+    app: yt-music-broker
+  ports:
+    - name: yt-music-broker
+      protocol: TCP
+      port: 4500
+      targetPort: 4500
+      nodePort: 30000
+  type: NodePort

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yt-music-server-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yt-music-server
+  template:
+    metadata:
+      labels:
+        app: yt-music-server
+    spec:
+      containers:
+        - name: yt-music-server
+          image: cyoni/yt-music-server
+          env:
+            - name: NATS_PORT
+              value: "4222"
+            - name: SERVER_PORT
+              value: "4500"

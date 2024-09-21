@@ -1,12 +1,12 @@
 {
   "name": "@cyoni10/yt-common",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./build/index.js",
   "files": [
-    "build/**/*"
+    "src/**/*"
   ],
   "scripts": {
-    "pub": "git commit -am \"updates\" && npm version patch && npm run build && npm publish"
+    "pub": "npm publish --access public"
   },
   "author": "",
   "license": "ISC",

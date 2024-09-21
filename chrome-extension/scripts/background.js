@@ -50,7 +50,7 @@ function downloadSong(id, title, url) {
     type: "basic",
   });
 
-  fetch(`http://localhost:4500/api/publish`, {
+  fetch(`http://localhost:30000/api/publish`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

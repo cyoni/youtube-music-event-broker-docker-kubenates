@@ -5,7 +5,7 @@ const GeneratorListener = require("./events/generator-listener");
 const clientId = randomBytes(4).toString("hex");
 
 const stan = nats.connect("youtube-music", clientId, {
-  url: `http://yt-music-broker-srv:${process.env.NATS_PORT}`,
+  url: `http://yt-nats-srv:${process.env.NATS_PORT}`,
 });
 
 stan.on("connect", () => {

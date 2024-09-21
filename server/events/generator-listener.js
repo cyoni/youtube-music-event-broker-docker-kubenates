@@ -1,5 +1,5 @@
-const Listener = require("../../common/base-listener");
-const { Subjects } = require("../../common/subjects");
+const Listener = require("@cyoni10/yt-common/src/base-listener");
+const { Subjects } = require("@cyoni10/yt-common/src/subjects");
 const { downloadSong, uploadToCloud } = require("../manager");
 
 class GeneratorListener extends Listener {

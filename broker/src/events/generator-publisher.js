@@ -1,5 +1,5 @@
-const Publisher = require("../../../common/base-publisher");
-const { Subjects } = require("../../../common/subjects");
+const Publisher = require("@cyoni10/yt-common/src/base-publisher");
+const { Subjects } = require("@cyoni10/yt-common/src/subjects");
 
 class GeneratorPublisher extends Publisher {
   subject = Subjects.CreateLink;
